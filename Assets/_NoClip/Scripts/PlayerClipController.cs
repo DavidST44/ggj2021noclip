@@ -7,8 +7,6 @@ public class PlayerClipController : MonoBehaviour
     public PlayerControllerClip clipMovement;
     public PlayerControllerNoClip noClipMovement;
 
-    public bool switchOnExit = true;
-
     private bool noClip;
     public bool NoClip
     {
@@ -30,30 +28,19 @@ public class PlayerClipController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("ClippingVolume"))
+        ClippingVolume cv = other.GetComponent<ClippingVolume>();
+        if (cv)
         {
-            NoClip = false;
-        }
-
-        if (other.CompareTag("NoClippingVolume"))
-        {
-            NoClip = true;
+            NoClip = cv.noClip;
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (!switchOnExit)
-            return;
-
-        if (other.CompareTag("ClippingVolume"))
+        ClippingVolume cv = other.GetComponent<ClippingVolume>();
+        if (cv && cv.listenForExit)
         {
-            NoClip = true;
-        }
-
-        if (other.CompareTag("NoClippingVolume"))
-        {
-            NoClip = false;
+            NoClip = !cv.noClip;
         }
     }
 }

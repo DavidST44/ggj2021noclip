@@ -73,11 +73,6 @@ public class PlayerControllerNoClip : MonoBehaviour
 
     void Update()
     {
-        // crouching
-        if (m_InputHandler.GetCrouchInputDown())
-        {
-            Debug.Log("move down in global space");
-        }
 
         UpdateCharacterHeight(false);
 
@@ -89,6 +84,7 @@ public class PlayerControllerNoClip : MonoBehaviour
         isDead = true;
     }
 
+    float verticalInput = 0f;
     void HandleCharacterMovement()
     {
         // horizontal character rotation
@@ -114,8 +110,26 @@ public class PlayerControllerNoClip : MonoBehaviour
         {
             float speedModifier = isSprinting ? sprintSpeedModifier : 1f;
 
+            
+            if (m_InputHandler.GetJumpInputHeld())
+            {
+                verticalInput = 1f;
+            }
+            else if(!m_InputHandler.GetCrouchInputReleased())
+            {
+                verticalInput = 0f;
+            }
+            if (m_InputHandler.GetCrouchInputDown())
+            {
+                verticalInput = -1f;
+            }
+            else if (m_InputHandler.GetCrouchInputReleased())
+            {
+                verticalInput = 0f;
+            }
+
             // converts move input to a worldspace vector based on our character's transform orientation
-            Vector3 worldspaceMoveInput = playerCamera.transform.TransformVector(m_InputHandler.GetMoveInput());
+            Vector3 worldspaceMoveInput = playerCamera.transform.TransformVector(m_InputHandler.GetMoveInput() + Vector3.up * verticalInput);
 
             characterVelocity = worldspaceMoveInput * maxSpeedInAir * speedModifier;
         }
