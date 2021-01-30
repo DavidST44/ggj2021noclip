@@ -140,7 +140,7 @@ public class PlayerCharacterController : MonoBehaviour
             if (recievesFallDamage && fallSpeedRatio > 0f)
             {
                 float dmgFromFall = Mathf.Lerp(fallDamageAtMinSpeed, fallDamageAtMaxSpeed, fallSpeedRatio);
-                Debug.LogFormat("FALL DAMAGE {1}".Red(), dmgFromFall);
+                Debug.LogFormat("FALL DAMAGE {0}".Red(), dmgFromFall);
 
                 // fall damage SFX
                 audioSource.PlayOneShot(fallDamageSFX);
