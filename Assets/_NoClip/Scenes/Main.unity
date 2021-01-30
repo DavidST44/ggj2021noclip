@@ -617,7 +617,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6880476778937b48b12a4df0b4bfb21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collider: {fileID: 1294103550}
   noClip: 0
   listenForExit: 1
 --- !u!65 &1294103550
@@ -791,7 +790,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6880476778937b48b12a4df0b4bfb21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collider: {fileID: 1489746870}
   noClip: 0
   listenForExit: 1
 --- !u!1 &1613410608
@@ -997,7 +995,7 @@ GameObject:
   - component: {fileID: 1797970881}
   - component: {fileID: 1797970880}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Spawn Marker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1308,7 +1306,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerClipController: {fileID: 1807677023}
   healthBar: {fileID: 562232069}
-  respawnTransform: {fileID: 0}
+  respawnTransform: {fileID: 1797970881}
   maxHealth: 100
   restoreRate: 50
   decayRate: 10
@@ -1356,7 +1354,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6880476778937b48b12a4df0b4bfb21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collider: {fileID: 1906361343}
   noClip: 1
   listenForExit: 0
 --- !u!65 &1906361343
@@ -1510,7 +1507,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6880476778937b48b12a4df0b4bfb21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collider: {fileID: 2113434974}
   noClip: 1
   listenForExit: 1
 --- !u!65 &2113434974
