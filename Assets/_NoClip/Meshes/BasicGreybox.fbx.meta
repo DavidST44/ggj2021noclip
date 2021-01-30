@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 74c8f2fb15aaf8d4aafefd6b15f9c7a3
+guid: b432d75630affb349a99980d546e574b
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
@@ -13,7 +13,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Invisible
-    second: {fileID: 2100000, guid: cd71291c91c8cce499cb663b5db9970e, type: 2}
+    second: {fileID: 2100000, guid: abbc984bb17c8694680b583db64f88ce, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
