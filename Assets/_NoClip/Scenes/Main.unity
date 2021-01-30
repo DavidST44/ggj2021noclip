@@ -242,6 +242,36 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -9195662854078172356, guid: b432d75630affb349a99980d546e574b, type: 3}
+--- !u!1 &922842635
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 922842636}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &922842636
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 922842635}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.86, y: 4.0183887, z: -0.63}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &939714901
 GameObject:
   m_ObjectHideFlags: 0
@@ -350,7 +380,7 @@ GameObject:
   m_TagString: ClippingVolume
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1489746869
 Transform:
@@ -411,7 +441,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_RenderShadows: 1
-  m_RequiresDepthTextureOption: 2
+  m_RequiresDepthTextureOption: 0
   m_RequiresOpaqueTextureOption: 2
   m_CameraType: 0
   m_Cameras: []
@@ -506,6 +536,7 @@ GameObject:
   - component: {fileID: 1807677018}
   - component: {fileID: 1807677021}
   - component: {fileID: 1807677017}
+  - component: {fileID: 1807677025}
   - component: {fileID: 1807677020}
   - component: {fileID: 1807677019}
   - component: {fileID: 1807677022}
@@ -759,6 +790,22 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1807677025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1807677016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81d7597182725c8418aaaad150b8ac91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerClipController: {fileID: 1807677023}
+  maxHealth: 100
+  restoreRate: 20
+  decayRate: 5
 --- !u!1001 &1982713456
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -826,9 +873,25 @@ PrefabInstance:
       propertyPath: m_Name
       value: BasicGreybox (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b432d75630affb349a99980d546e574b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 2552327617057372446, guid: b432d75630affb349a99980d546e574b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 3062814740248432255, guid: b432d75630affb349a99980d546e574b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 8343248219658952724, guid: b432d75630affb349a99980d546e574b, type: 3}
       propertyPath: m_Layer
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8343248219658952724, guid: b432d75630affb349a99980d546e574b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b432d75630affb349a99980d546e574b, type: 3}

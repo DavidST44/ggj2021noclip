@@ -7,13 +7,30 @@ public class PlayerClipController : MonoBehaviour
     public PlayerControllerClip clipMovement;
     public PlayerControllerNoClip noClipMovement;
 
+    private bool noClip;
+    public bool NoClip
+    {
+        get
+        {
+            return noClip;
+        }
+        private set
+        {
+            if (value != noClip)
+            {
+                noClip = value;
+                clipMovement.enabled = !value;
+                noClipMovement.enabled = value;
+                gameObject.layer = LayerMask.NameToLayer(value ? "NoClip" : "Default");
+            }
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("ClippingVolume"))
         {
-            clipMovement.enabled = true;
-            noClipMovement.enabled = false;
-            gameObject.layer = LayerMask.NameToLayer("Default");
+            NoClip = false;
         }
     }
 
@@ -21,9 +38,7 @@ public class PlayerClipController : MonoBehaviour
     {
         if (other.CompareTag("ClippingVolume"))
         {
-            clipMovement.enabled = false;
-            noClipMovement.enabled = true;
-            gameObject.layer = LayerMask.NameToLayer("NoClip");
+            NoClip = true;
         }
     }
 }
