@@ -15,7 +15,7 @@ public class PlayerMovementChange : MonoBehaviour
         noClip.enabled = !standardMovement;
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("EnterNoClip"))
         {
