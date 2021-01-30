@@ -24,7 +24,7 @@ public class PlayerHealth : MonoBehaviour
 
     private void LateUpdate()
     {
-        if(state == State.Alive)
+        if (state == State.Alive)
         {
             if (playerClipController.NoClip)
             {
@@ -66,6 +66,7 @@ public class PlayerHealth : MonoBehaviour
 
     void Respawn()
     {
+        playerClipController.noClipMovement.enabled = false;
         transform.position = respawnTransform.position;
         transform.rotation = respawnTransform.rotation;
         health = maxHealth;
