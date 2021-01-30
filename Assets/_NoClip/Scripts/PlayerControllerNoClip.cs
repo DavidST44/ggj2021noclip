@@ -2,14 +2,14 @@ using UnityEngine;
 using UnityEngine.Events;
 
 [RequireComponent(typeof(CharacterController), typeof(PlayerInputHandler), typeof(AudioSource))]
-public class PlayerCharacterNoClip : MonoBehaviour
+public class PlayerControllerNoClip : MonoBehaviour
 {
     [Header("References")]
     [Tooltip("Reference to the main camera used for the player")]
     public Camera playerCamera;
     [Tooltip("Audio source for footsteps, jump, etc...")]
     public AudioSource audioSource;
-    public PlayerCharacterController standardMovement;
+    public PlayerControllerClip standardMovement;
 
     [Header("Movement")]
     [Tooltip("Max movement speed when not grounded")]
