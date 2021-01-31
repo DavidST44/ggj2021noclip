@@ -29,7 +29,7 @@ public static class EditorExtensions
                 rt.anchorMin = new Vector2(left, bottom);
                 rt.anchorMax = new Vector2(right, top);
                 rt.sizeDelta = rt.anchoredPosition = new Vector2(0, 0);
-                //rt.localPosition = initPos;
+                rt.localPosition = initPos;
             }
         }
     }

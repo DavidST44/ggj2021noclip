@@ -11,12 +11,12 @@ GameObject:
   - component: {fileID: 4276922774676455122}
   - component: {fileID: 7628502272789132034}
   - component: {fileID: 2853992289154263122}
-  m_Layer: 9
+  m_Layer: 7
   m_Name: NoClipping Volume
-  m_TagString: NoClippingVolume
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &4276922774676455122
 Transform:
@@ -57,4 +57,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6880476778937b48b12a4df0b4bfb21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collider: {fileID: 7628502272789132034}
+  noClip: 1
+  listenForExit: 1

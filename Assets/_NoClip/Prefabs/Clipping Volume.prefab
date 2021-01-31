@@ -13,10 +13,10 @@ GameObject:
   - component: {fileID: 5155632600580300090}
   m_Layer: 7
   m_Name: Clipping Volume
-  m_TagString: ClippingVolume
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &207400060955645748
 Transform:
@@ -57,4 +57,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6880476778937b48b12a4df0b4bfb21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collider: {fileID: 5984269804004107116}
+  noClip: 0
+  listenForExit: 1
