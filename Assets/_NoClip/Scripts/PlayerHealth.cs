@@ -31,7 +31,7 @@ public class PlayerHealth : MonoBehaviour
         {
             if (playerClipController.NoClip)
             {
-                AddHealth(Time.deltaTime * decayRate);
+                AddHealth(-Time.deltaTime * decayRate);
             }
             else if (health < maxHealth)
             {
