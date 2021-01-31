@@ -19,9 +19,6 @@ public class PlayerInputHandler : MonoBehaviour
     private void Start()
     {
         m_PlayerCharacterController = GetComponent<PlayerControllerClip>();
-
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
     }
 
     private void LateUpdate()
