@@ -19,6 +19,8 @@ public class Item : MonoBehaviour
         {
             ++PlayerHealth.itemsCollected;
             Destroy(gameObject);
+            var audio = AudioManager.Instance.AddController(AudioManager.Instance.pickUp, false, 1);
+            audio.audioSource.Play();
         }
 
     }
