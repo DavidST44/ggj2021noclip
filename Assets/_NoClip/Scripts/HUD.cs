@@ -21,14 +21,14 @@ public class HUD : MonoBehaviour
             return;
         }
 
-        if (m_playerControllerClip.IsAlive())
-        {
-            HideDeathSplash();
-        }
-        else
-        {
-            ShowDeathSplash();
-        }
+        // if (m_playerControllerClip.IsAlive())
+        // {
+        //     HideDeathSplash();
+        // }
+        // else
+        // {
+        //     ShowDeathSplash();
+        // }
     }
 
     void ShowDeathSplash()
@@ -41,8 +41,8 @@ public class HUD : MonoBehaviour
         m_DeathSpalshCanvasGroup.alpha = 0;
     }
 
-    public void OnRespawnButtonPressed()
-    {
-        m_playerControllerClip.Respawn();
-    }
+    // public void OnRespawnButtonPressed()
+    // {
+    //     m_playerControllerClip.Respawn();
+    // }
 }
