@@ -21,7 +21,7 @@ public class PlayerClipController : MonoBehaviour
                 noClip = value;
                 clipMovement.enabled = !value;
                 noClipMovement.enabled = value;
-                gameObject.layer = LayerMask.NameToLayer(value ? "NoClipObject" : "Default");
+                gameObject.layer = LayerMask.NameToLayer(value ? "NoClipObject" : "Player");
             }
         }
     }
