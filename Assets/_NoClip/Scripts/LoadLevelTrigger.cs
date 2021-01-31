@@ -1,24 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class KillVolume : MonoBehaviour
+public class LoadLevelTrigger : MonoBehaviour
 {
-    private new Collider collider;
-    public Collider Collider => collider != null ? collider : (collider = GetComponent<Collider>());
+    public string sceneToLoad;
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            var v = other.GetComponent<PlayerHealth>();
-            v.AddHealth(Mathf.NegativeInfinity);
+            SceneManager.LoadScene(sceneToLoad);
         }
     }
+    private new Collider collider;
+    public Collider Collider => collider != null ? collider : (collider = GetComponent<Collider>());
+
     private void OnDrawGizmos()
     {
         if (!Collider)
             return;
-        Gizmos.color = (Color.yellow).WithAlpha(0.1f);
+        Gizmos.color = (Color.cyan).WithAlpha(0.1f);
         Gizmos.DrawCube(Collider.bounds.center, Collider.bounds.size);
     }
 }
