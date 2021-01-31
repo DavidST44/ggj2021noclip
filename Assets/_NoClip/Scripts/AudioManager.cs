@@ -31,8 +31,9 @@ public class AudioManager : MonoBehaviour
 
     public AudioController flightSound;
     public AudioController voidAmbientSound;
-
+    
     // Music
+    public AudioController menuPopupMusic;
     public AudioController menuMusic;
     public AudioController puzzleMusic;
     public AudioController voidMusic;
@@ -63,5 +64,6 @@ public class AudioManager : MonoBehaviour
         menuMusic = AddController(activeMusic.menu, true, 1);
         puzzleMusic = AddController(activeMusic.puzzle, true, 1);
         voidMusic = AddController(activeMusic.ambientPuzzle, true, 1);
+        menuPopupMusic = AddController(abbysMusic.menu, true, 1);
     }
 }
