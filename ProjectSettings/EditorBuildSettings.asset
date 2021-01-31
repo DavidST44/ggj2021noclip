@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_NoClip/Scenes/level1.unity
     guid: 3fccac2cfb9b5e14f8b82ccd0b17b2a7
+  - enabled: 1
+    path: Assets/noGravity/scene/sss.unity
+    guid: c7521e1c082f04a49bcfcf48064acbbb
   m_configObjects: {}

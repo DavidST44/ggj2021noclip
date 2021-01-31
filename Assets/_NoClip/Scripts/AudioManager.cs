@@ -31,9 +31,11 @@ public class AudioManager : MonoBehaviour
 
     public AudioController flightSound;
     public AudioController voidAmbientSound;
-    public AudioController menuSound;
-    public AudioController puzzleSound;
-    public AudioController ambientPuzzleSound;
+
+    // Music
+    public AudioController menuMusic;
+    public AudioController puzzleMusic;
+    public AudioController voidMusic;
 
     public GameObject audioControllerPrefab;
 
@@ -58,8 +60,8 @@ public class AudioManager : MonoBehaviour
         flightSound = AddController(flight, true, 1);
         voidAmbientSound = AddController(voidAmbient, true, 1);
         activeMusic = yungsMusic;
-        menuSound = AddController(activeMusic.menu, true, 1);
-        puzzleSound = AddController(activeMusic.puzzle, true, 1);
-        ambientPuzzleSound = AddController(activeMusic.ambientPuzzle, true, 1);
+        menuMusic = AddController(activeMusic.menu, true, 1);
+        puzzleMusic = AddController(activeMusic.puzzle, true, 1);
+        voidMusic = AddController(activeMusic.ambientPuzzle, true, 1);
     }
 }
