@@ -7,7 +7,7 @@ public class PlayerClipController : MonoBehaviour
 {
     public PlayerControllerClip clipMovement;
     public PlayerControllerNoClip noClipMovement;
-
+    
     private bool noClip;
     public bool NoClip
     {
@@ -31,7 +31,6 @@ public class PlayerClipController : MonoBehaviour
     {
         if (noClip)
         {
-            AudioManager.Instance.AddController(AudioManager.Instance.noClip, false, 1);
             var audio = AudioManager.Instance.voidAmbientSound;
             if (!audio.audioSource.isPlaying)
             {

@@ -71,7 +71,8 @@ public class PlayerHealth : MonoBehaviour
                 break;
 
             case State.Dead:
-                AudioManager.Instance.AddController(AudioManager.Instance.death, false, 1);
+                var audio = AudioManager.Instance.AddController(AudioManager.Instance.death, false, 1);
+                audio.audioSource.Play();
                 Respawn();
                 break;
         }
