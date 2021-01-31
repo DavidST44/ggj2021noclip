@@ -53,6 +53,7 @@ public class AudioManager : MonoBehaviour
         if(Instance)
             Destroy(Instance.gameObject);
         Instance = this;
+        DontDestroyOnLoad(this.gameObject);
         flightSound = AddController(flight, true, 1);
         voidAmbientSound = AddController(voidAmbient, true, 1);
         activeMusic = yungsMusic;
