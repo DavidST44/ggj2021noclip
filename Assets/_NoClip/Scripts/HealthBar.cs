@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +8,11 @@ public class HealthBar : MonoBehaviour
 {
     public PlayerHealth playerHealth;
     public RectTransform healthBar;
+
+    private void Start()
+    {
+        playerHealth = FindObjectOfType<PlayerHealth>();
+    }
 
     private void Update()
     {
