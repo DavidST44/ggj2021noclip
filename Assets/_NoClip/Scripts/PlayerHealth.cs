@@ -44,6 +44,11 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
+    public void AddHealth(float value)
+    {
+        health += value;
+    }
+
     private void LateUpdate()
     {
         if (state == State.Alive)
@@ -78,9 +83,17 @@ public class PlayerHealth : MonoBehaviour
     void Respawn()
     {
         playerClipController.noClipMovement.enabled = false;
+        playerClipController.clipMovement.enabled = false;
+        playerClipController.clipMovement.characterVelocity = Vector3.zero;
         transform.position = respawnTransform.position;
         transform.rotation = respawnTransform.rotation;
         health = maxHealth;
         SetState(State.Alive);
+        Invoke("Foo", 0.1f);
+    }
+
+    void Foo()
+    {
+        playerClipController.clipMovement.enabled = true;
     }
 }
