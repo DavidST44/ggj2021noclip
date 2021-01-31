@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,7 +9,6 @@ public class PlayerHealth : MonoBehaviour
     private enum State { Alive, Dead }
 
     public PlayerClipController playerClipController;
-    public RectTransform healthBar;
     public Transform respawnTransform;
 
     private State state = State.Alive;
@@ -17,23 +17,21 @@ public class PlayerHealth : MonoBehaviour
     public float restoreRate = 20.0f;
     public float decayRate = 5.0f;
 
+    public static int itemsCollected = 0;
+    
+
     private void Start()
     {
         health = maxHealth;
     }
 
-    private void LateUpdate()
+    private void Update()
     {
-        if(state == State.Alive)
+        if (state == State.Alive)
         {
             if (playerClipController.NoClip)
             {
                 health -= Time.deltaTime * decayRate;
-                if (health <= 0f)
-                {
-                    health = 0f;
-                    SetState(State.Dead);
-                }
             }
             else if (health < maxHealth)
             {
@@ -43,11 +41,24 @@ public class PlayerHealth : MonoBehaviour
             {
                 health = maxHealth;
             }
-
-            Vector3 scale = healthBar.localScale;
-            scale.x = health / maxHealth;
-            healthBar.localScale = scale;
         }
+    }
+
+    private void LateUpdate()
+    {
+        if (state == State.Alive)
+        {
+            if (health <= 0f)
+            {
+                health = 0f;
+                SetState(State.Dead);
+            }
+        }
+    }
+
+    public float GetHealthNormalised()
+    {
+        return health / maxHealth;
     }
 
     private void SetState(State state)
@@ -66,6 +77,7 @@ public class PlayerHealth : MonoBehaviour
 
     void Respawn()
     {
+        playerClipController.noClipMovement.enabled = false;
         transform.position = respawnTransform.position;
         transform.rotation = respawnTransform.rotation;
         health = maxHealth;
