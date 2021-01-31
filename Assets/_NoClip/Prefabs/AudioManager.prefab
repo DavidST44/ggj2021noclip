@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5920794554676125985
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3609683303784599985}
+  - component: {fileID: 290686800335110931}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3609683303784599985
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5920794554676125985}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.620955, y: 3.0483942, z: -1.2840519}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &290686800335110931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5920794554676125985}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cb1a57294c8b274192818ce7102577c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  yungsMusic:
+    menu: {fileID: 8300000, guid: a9fea6789f2dcbf49aba32214e214ccc, type: 3}
+    puzzle: {fileID: 8300000, guid: 46793b2913092694f80fa6a287da2950, type: 3}
+    ambientPuzzle: {fileID: 8300000, guid: 52e49ee87bf5f2445a200c297d67131c, type: 3}
+  abbysMusic:
+    menu: {fileID: 8300000, guid: 8be00b2d3468fb641a60d590f64754c2, type: 3}
+    puzzle: {fileID: 8300000, guid: 47f957103e0b55547ad2e940e293b8cd, type: 3}
+    ambientPuzzle: {fileID: 8300000, guid: d09fd087f0962c449b1bf77cf2102fa1, type: 3}
+  activeMusic:
+    menu: {fileID: 0}
+    puzzle: {fileID: 0}
+    ambientPuzzle: {fileID: 0}
+  death: {fileID: 8300000, guid: 35a7928836723524eaa4e6ff1c430ac7, type: 3}
+  flight: {fileID: 8300000, guid: 5f714f65c1d2cf240bb324994d48da2b, type: 3}
+  gameOver: {fileID: 8300000, guid: dadf22cac916bac4b8ff6d33b6d9ed30, type: 3}
+  damage: {fileID: 8300000, guid: e5a6b05c560bf4d4b8bdf6c964e80b13, type: 3}
+  pickUp: {fileID: 8300000, guid: 3e08b4bf5beabb848995a28b2e40f470, type: 3}
+  noClip: {fileID: 8300000, guid: b5c96d1c822a02f45afe384325f415e7, type: 3}
+  voidAmbient: {fileID: 8300000, guid: 13e77c58aa313aa4981e596a7a1fce92, type: 3}
+  audioControllerPrefab: {fileID: 4287763163845766765, guid: b67d797c3dbe1cd4a923d67c46290723, type: 3}
