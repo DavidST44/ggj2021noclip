@@ -173,6 +173,11 @@ public class PlayerControllerClip : MonoBehaviour
         UpdateCharacterHeight(false);
 
         HandleCharacterMovement();
+
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            Application.Quit();
+        }
     }
 
     void OnDie()
