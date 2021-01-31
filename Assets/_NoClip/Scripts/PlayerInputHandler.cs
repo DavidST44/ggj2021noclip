@@ -19,6 +19,12 @@ public class PlayerInputHandler : MonoBehaviour
     private void Start()
     {
         m_PlayerCharacterController = GetComponent<PlayerControllerClip>();
+        //Check for a MainMenu before disabling and centering the cursor
+        if (!FindObjectOfType<MainMenu>())
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
     }
 
     private void LateUpdate()
