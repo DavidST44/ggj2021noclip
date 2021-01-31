@@ -31,11 +31,11 @@ public class PlayerHealth : MonoBehaviour
         {
             if (playerClipController.NoClip)
             {
-                health -= Time.deltaTime * decayRate;
+                AddHealth(Time.deltaTime * decayRate);
             }
             else if (health < maxHealth)
             {
-                health += Time.deltaTime * restoreRate;
+                AddHealth(Time.deltaTime * restoreRate);
             }
             else
             {
@@ -44,8 +44,9 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
-    private void LateUpdate()
+    public void AddHealth(float value)
     {
+        health += value;
         if (state == State.Alive)
         {
             if (health <= 0f)
@@ -78,9 +79,17 @@ public class PlayerHealth : MonoBehaviour
     void Respawn()
     {
         playerClipController.noClipMovement.enabled = false;
+        playerClipController.clipMovement.enabled = false;
+        playerClipController.clipMovement.characterVelocity = Vector3.zero;
         transform.position = respawnTransform.position;
         transform.rotation = respawnTransform.rotation;
         health = maxHealth;
         SetState(State.Alive);
+        Invoke("Foo", 0.1f);
+    }
+
+    void Foo()
+    {
+        playerClipController.clipMovement.enabled = true;
     }
 }
