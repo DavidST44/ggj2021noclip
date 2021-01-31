@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -23,6 +24,28 @@ public class PlayerClipController : MonoBehaviour
                 noClipMovement.enabled = value;
                 gameObject.layer = LayerMask.NameToLayer(value ? "NoClipObject" : "Player");
             }
+        }
+    }
+
+    private void Update()
+    {
+        if (noClip)
+        {
+            var audio = AudioManager.Instance.voidAmbientSound;
+            if (!audio.audioSource.isPlaying)
+            {
+                audio.audioSource.Play();
+            }
+            AudioManager.Instance.ambientPuzzleSound.audioSource.Pause();
+        }
+        else
+        {
+            var audio = AudioManager.Instance.ambientPuzzleSound;
+            if (!audio.audioSource.isPlaying)
+            {
+                audio.audioSource.Play();
+            }
+            AudioManager.Instance.voidAmbientSound.audioSource.Pause();
         }
     }
 
