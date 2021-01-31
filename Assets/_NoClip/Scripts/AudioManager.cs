@@ -2,19 +2,20 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 using Random = System.Random;
 
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance;
-    
+
     [System.Serializable]
     public class GameMusic
     {
         public AudioClip menu;
         public AudioClip puzzle;
-        public AudioClip ambientPuzzle;    
+        public AudioClip ambientPuzzle;
     }
 
     public GameMusic yungsMusic;
@@ -33,12 +34,12 @@ public class AudioManager : MonoBehaviour
     public AudioController menuSound;
     public AudioController puzzleSound;
     public AudioController ambientPuzzleSound;
-    
+
     public GameObject audioControllerPrefab;
-    
+
     public AudioController AddController(AudioClip clip, bool loop, float volume)
     {
-        var go = Instantiate(audioControllerPrefab,transform.position, transform.rotation, transform);
+        var go = Instantiate(audioControllerPrefab, transform.position, transform.rotation, transform);
         go.name = clip.name;
         var audioController = go.GetComponent<AudioController>();
         audioController.audioSource = go.GetComponent<AudioSource>();
@@ -50,7 +51,7 @@ public class AudioManager : MonoBehaviour
 
     private void Awake()
     {
-        if(Instance)
+        if (Instance)
             Destroy(Instance.gameObject);
         Instance = this;
         DontDestroyOnLoad(this.gameObject);
@@ -60,7 +61,5 @@ public class AudioManager : MonoBehaviour
         menuSound = AddController(activeMusic.menu, true, 1);
         puzzleSound = AddController(activeMusic.puzzle, true, 1);
         ambientPuzzleSound = AddController(activeMusic.ambientPuzzle, true, 1);
-        transform.SetParent(GameObject.Find("Player").transform);
-        transform.localPosition = Vector3.zero;
     }
 }
