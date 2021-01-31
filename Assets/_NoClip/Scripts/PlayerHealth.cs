@@ -31,11 +31,11 @@ public class PlayerHealth : MonoBehaviour
         {
             if (playerClipController.NoClip)
             {
-                health -= Time.deltaTime * decayRate;
+                AddHealth(Time.deltaTime * decayRate);
             }
             else if (health < maxHealth)
             {
-                health += Time.deltaTime * restoreRate;
+                AddHealth(Time.deltaTime * restoreRate);
             }
             else
             {
@@ -47,10 +47,6 @@ public class PlayerHealth : MonoBehaviour
     public void AddHealth(float value)
     {
         health += value;
-    }
-
-    private void LateUpdate()
-    {
         if (state == State.Alive)
         {
             if (health <= 0f)
