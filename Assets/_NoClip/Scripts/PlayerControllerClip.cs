@@ -81,7 +81,6 @@ public class PlayerControllerClip : MonoBehaviour
     public float fallDamageAtMinSpeed = 10f;
     [Tooltip("Damage recieved when falling at the maximum speed")]
     public float fallDamageAtMaxSpeed = 50f;
-
     public UnityAction<bool> onStanceChanged;
 
     public Vector3 characterVelocity { get; set; }
@@ -106,10 +105,11 @@ public class PlayerControllerClip : MonoBehaviour
     internal float m_CameraVerticalAngle = 0f;
     float m_footstepDistanceCounter;
     float m_TargetCharacterHeight;
-
+    bool m_InvertGravity = false;
+    
     const float k_JumpGroundingPreventionTime = 0.2f;
     const float k_GroundCheckDistanceInAir = 0.07f;
-
+    
     private void OnEnable()
     {
         m_LastTimeJumped = Time.time;
@@ -134,9 +134,15 @@ public class PlayerControllerClip : MonoBehaviour
     {
         hasJumpedThisFrame = false;
 
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            m_InvertGravity = !m_InvertGravity;
+        }
+        gravityDownForce = m_InvertGravity ? -20 : 20;
+
         bool wasGrounded = isGrounded;
         GroundCheck();
-
+        
         // landing
         if (isGrounded && !wasGrounded)
         {
@@ -163,7 +169,7 @@ public class PlayerControllerClip : MonoBehaviour
         {
             SetCrouchingState(!isCrouching, false);
         }
-
+        
         UpdateCharacterHeight(false);
 
         HandleCharacterMovement();
@@ -182,30 +188,32 @@ public class PlayerControllerClip : MonoBehaviour
         // reset values before the ground check
         isGrounded = false;
         m_GroundNormal = Vector3.up;
-
-        // only try to detect ground if it's been a short amount of time since last jump; otherwise we may snap to the ground instantly after we try jumping
+        
         if (Time.time >= m_LastTimeJumped + k_JumpGroundingPreventionTime)
         {
-            // if we're grounded, collect info about the ground normal with a downward capsule cast representing our character capsule
-            if (Physics.CapsuleCast(GetCapsuleBottomHemisphere(), GetCapsuleTopHemisphere(m_Controller.height), m_Controller.radius, Vector3.down, out RaycastHit hit, chosenGroundCheckDistance, groundCheckLayers, QueryTriggerInteraction.Ignore))
+            var direction = m_InvertGravity ? Vector3.up : Vector3.down;
+            if (Physics.CapsuleCast(GetCapsuleBottomHemisphere(), GetCapsuleTopHemisphere(m_Controller.height),
+                m_Controller.radius, direction, out RaycastHit hit, chosenGroundCheckDistance, groundCheckLayers,
+                QueryTriggerInteraction.Ignore))
             {
                 // storing the upward direction for the surface found
                 m_GroundNormal = hit.normal;
-
                 // Only consider this a valid ground hit if the ground normal goes in the same direction as the character up
                 // and if the slope angle is lower than the character controller's limit
-                if (Vector3.Dot(hit.normal, transform.up) > 0f &&
-                    IsNormalUnderSlopeLimit(m_GroundNormal))
+                var transformUp = m_InvertGravity ? transform.up * -1: transform.up;
+                if (Vector3.Dot(hit.normal, transformUp) > 0f &&
+                    IsNormalUnderSlopeLimit(transformUp, m_GroundNormal))
                 {
                     isGrounded = true;
 
                     // handle snapping to the ground
                     if (hit.distance > m_Controller.skinWidth)
                     {
-                        m_Controller.Move(Vector3.down * hit.distance);
+                        var movement = m_InvertGravity ? Vector3.up : Vector3.down;
+                        m_Controller.Move(movement * hit.distance);
                     }
                 }
-            }
+            }    
         }
     }
 
@@ -228,7 +236,6 @@ public class PlayerControllerClip : MonoBehaviour
             // apply the vertical angle as a local rotation to the camera transform along its right axis (makes it pivot up and down)
             playerCamera.transform.localEulerAngles = new Vector3(m_CameraVerticalAngle, 0, 0);
         }
-
         // character movement handling
         bool isSprinting = m_InputHandler.GetSprintInputHeld();
         {
@@ -250,6 +257,7 @@ public class PlayerControllerClip : MonoBehaviour
                 // reduce speed if crouching by crouch speed ratio
                 if (isCrouching)
                     targetVelocity *= maxSpeedCrouchedRatio;
+                m_GroundNormal = m_InvertGravity ? m_GroundNormal * -1 : m_GroundNormal;
                 targetVelocity = GetDirectionReorientedOnSlope(targetVelocity.normalized, m_GroundNormal) * targetVelocity.magnitude;
 
                 // smoothly interpolate between our current velocity and the target velocity based on acceleration speed
@@ -263,9 +271,9 @@ public class PlayerControllerClip : MonoBehaviour
                     {
                         // start by canceling out the vertical component of our velocity
                         characterVelocity = new Vector3(characterVelocity.x, 0f, characterVelocity.z);
-
+                        var jumpVector = m_InvertGravity ? Vector3.down : Vector3.up;
                         // then, add the jumpSpeed value upwards
-                        characterVelocity += Vector3.up * jumpForce;
+                        characterVelocity += jumpVector * jumpForce;
 
                         // play sound
                         audioSource.PlayOneShot(jumpSFX);
@@ -276,7 +284,7 @@ public class PlayerControllerClip : MonoBehaviour
 
                         // Force grounding to false
                         isGrounded = false;
-                        m_GroundNormal = Vector3.up;
+                        m_GroundNormal = m_InvertGravity ? Vector3.down : Vector3.up;
                     }
                 }
 
@@ -311,7 +319,7 @@ public class PlayerControllerClip : MonoBehaviour
         // apply the final calculated velocity value as a character movement
         Vector3 capsuleBottomBeforeMove = GetCapsuleBottomHemisphere();
         Vector3 capsuleTopBeforeMove = GetCapsuleTopHemisphere(m_Controller.height);
-        m_Controller.Move(characterVelocity * Time.deltaTime);
+        m_Controller. Move(characterVelocity * Time.deltaTime);
 
         // detect obstructions to adjust velocity accordingly
         m_LatestImpactSpeed = Vector3.zero;
@@ -325,9 +333,9 @@ public class PlayerControllerClip : MonoBehaviour
     }
 
     // Returns true if the slope angle represented by the given normal is under the slope angle limit of the character controller
-    bool IsNormalUnderSlopeLimit(Vector3 normal)
+    bool IsNormalUnderSlopeLimit(Vector3 upAngle, Vector3 normal)
     {
-        return Vector3.Angle(transform.up, normal) <= m_Controller.slopeLimit;
+        return Vector3.Angle(upAngle, normal) <= m_Controller.slopeLimit;
     }
 
     // Gets the center point of the bottom hemisphere of the character controller capsule    
