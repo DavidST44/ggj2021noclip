@@ -31,6 +31,7 @@ public class AudioManager : MonoBehaviour
 
     public AudioController flightSound;
     public AudioController voidAmbientSound;
+
     // Music
     public AudioController menuMusic;
     public AudioController puzzleMusic;
