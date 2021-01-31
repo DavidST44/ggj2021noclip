@@ -252,6 +252,7 @@ public class PlayerControllerClip : MonoBehaviour
             // handle grounded movement
             if (isGrounded)
             {
+                AudioManager.Instance.flightSound.audioSource.Pause();
                 // calculate the desired velocity from inputs, max speed, and current slope
                 Vector3 targetVelocity = worldspaceMoveInput * maxSpeedOnGround * speedModifier;
                 // reduce speed if crouching by crouch speed ratio
@@ -304,7 +305,8 @@ public class PlayerControllerClip : MonoBehaviour
             {
                 // add air acceleration
                 characterVelocity += worldspaceMoveInput * accelerationSpeedInAir * Time.deltaTime;
-
+                if(AudioManager.Instance.flightSound.audioSource.isPlaying!)
+                    AudioManager.Instance.flightSound.audioSource.Play();
                 // limit air speed to a maximum, but only horizontally
                 float verticalVelocity = characterVelocity.y;
                 Vector3 horizontalVelocity = Vector3.ProjectOnPlane(characterVelocity, Vector3.up);

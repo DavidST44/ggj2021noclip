@@ -63,7 +63,7 @@ public class PlayerControllerNoClip : MonoBehaviour
     {
         // fetch components on the same gameObject
         m_Controller = GetComponent<CharacterController>();
-
+        
         m_InputHandler = GetComponent<PlayerInputHandler>();
 
         m_Controller.enableOverlapRecovery = true;
