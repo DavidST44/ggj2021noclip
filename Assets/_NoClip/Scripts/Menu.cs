@@ -8,13 +8,13 @@ public class Menu : MonoBehaviour
 {
     private void Start()
     {
-        AudioManager.Instance.menuSound.audioSource.Play();
+        AudioManager.Instance.menuMusic.audioSource.Play();
     }
 
     public void Play() 
     {
         SceneManager.LoadScene("level1");
-        AudioManager.Instance.menuSound.audioSource.Pause();
+        AudioManager.Instance.menuMusic.audioSource.Pause();
     }
 
     public void Quit()

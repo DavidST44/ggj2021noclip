@@ -36,16 +36,22 @@ public class PlayerClipController : MonoBehaviour
             {
                 audio.audioSource.Play();
             }
-            AudioManager.Instance.ambientPuzzleSound.audioSource.Pause();
+            var audio1 = AudioManager.Instance.voidMusic;
+            if (!audio1.audioSource.isPlaying)
+            {
+                audio1.audioSource.Play();
+            }
+            AudioManager.Instance.puzzleMusic.audioSource.Pause();
         }
         else
         {
-            var audio = AudioManager.Instance.ambientPuzzleSound;
+            var audio = AudioManager.Instance.puzzleMusic;
             if (!audio.audioSource.isPlaying)
             {
                 audio.audioSource.Play();
             }
             AudioManager.Instance.voidAmbientSound.audioSource.Pause();
+            AudioManager.Instance.voidMusic.audioSource.Pause();
         }
     }
 
